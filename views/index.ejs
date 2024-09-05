@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Chatbot with GPT-4 and Image Upload</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                padding: 20px;
+            }
+            form {
+                margin-bottom: 20px;
+            }
+            input,
+            textarea {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+            }
+            button {
+                padding: 10px 20px;
+                background-color: #5cb85c;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+            .chat-history {
+                margin-top: 20px;
+            }
+            .chat-message {
+                padding: 10px;
+                border: 1px solid #ddd;
+                margin-bottom: 10px;
+                border-radius: 8px;
+                background-color: #f9f9f9;
+            }
+            .chat-message img {
+                max-width: 200px;
+                margin-top: 10px;
+            }
+            .user-message {
+                font-weight: bold;
+            }
+            .bot-reply {
+                color: #555;
+                margin-top: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Chatbot with GPT-4 and Image Upload</h1>
+
+        <form action="/chat" method="POST" enctype="multipart/form-data">
+            <label for="message">Your Message:</label>
+            <textarea
+                name="message"
+                id="message"
+                rows="4"
+                placeholder="Type your message here"
+            ></textarea>
+
+            <label for="image">Upload an Image (Optional):</label>
+            <input type="file" name="image" id="image" />
+
+            <button type="submit">Send</button>
+        </form>
+
+        <div class="chat-history">
+            <% if (chatHistory.length > 0) { %> <% chatHistory.forEach(chat => {
+            %>
+            <div class="chat-message">
+                <div class="user-message">User: <%= chat.userMessage %></div>
+
+                <% if (chat.imageUrl) { %>
+                <img src="<%= chat.imageUrl %>" alt="Uploaded Image" />
+                <% } %>
+
+                <div class="bot-reply">Bot: <%= chat.botReply %></div>
+            </div>
+            <% }) %> <% } else { %>
+            <p>No messages yet. Start the conversation!</p>
+            <% } %>
+        </div>
+    </body>
+</html>
