@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSRFlow | Dashboard</title>
+<link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+<div class="dashboard">
+    <div class="metrics">
+        <h2>Metrics</h2>
+        <div class="metric-flex">
+            <div class="box" id="ticketVolume">Number of Tickets/Queries: <span><%= metrics.ticketVolume %></span></div>
+            <div class="box" id="avgResponseTime">Average Response Time: <span><%= metrics.avgResponseTime %></span></div>
+            <div class="box" id="firstResponseResolution">First Response Resolution (FRR): <span><%= metrics.firstResponseResolution %></span></div>
+            <div class="box" id="customerSatisfaction">Customer Satisfaction (CSAT) Scores: <span><%= metrics.customerSatisfaction %></span></div>
+            <div class="box" id="ticketEscalationRate">Ticket Escalation Rate: <span><%= metrics.ticketEscalationRate %></span></div>
+        </div>
+    </div>
+    <div class="policies">
+        <h2>Policies</h2>
+        <textarea id="policyText">
+            <%= policies %>
+        </textarea>
+        <button onclick="savePolicies()">Save Policies</button>
+    </div>
+    <div class="escalated-queries">
+        <h2>Escalated Chats</h2>
+        <ul id="escalatedList">
+        </ul>
+    </div>
+
+</div>
+<script src="/js/dashboard.js"></script>
+</body>
+</html>
